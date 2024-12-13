@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@mui/material/Button';
 
 const MeetingCard = ({ meeting, onUpdate, onCancel }) => {
-  // Get the second participant (index 1)
   const meetingWith = meeting.participants[1] || 'Unknown';
 
   return (

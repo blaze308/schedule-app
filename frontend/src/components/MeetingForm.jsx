@@ -9,24 +9,24 @@ import dayjs from 'dayjs';
 
 const MeetingForm = () => {
   const [formData, setFormData] = useState({
-    title: '', // Add the title field
-    participants: ['', ''], // Array for two participants
-    date: null, // Date in YYYY-MM-DD format
-    startTime: '', // Start time in HH:mm:ss format
-    duration: '', // Duration in minutes
+    title: '', 
+    participants: ['', ''], 
+    date: null, 
+    startTime: '', 
+    duration: '',
   });
 
-  const [loggedInUser, setLoggedInUser] = useState(null); // Store logged-in user's info
-  const [errors, setErrors] = useState({}); // Validation errors
+  const [loggedInUser, setLoggedInUser] = useState(null); 
+  const [errors, setErrors] = useState({}); 
 
   useEffect(() => {
     // Fetch logged-in user details from localStorage
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-      setLoggedInUser(user); // Store logged-in user info
+      setLoggedInUser(user); 
       setFormData((prevFormData) => ({
         ...prevFormData,
-        participants: [user.id, ''], // Pre-fill the first participant with user ID
+        participants: [user.id, ''], 
       }));
     }
   }, []);
@@ -46,7 +46,7 @@ const MeetingForm = () => {
     } else {
       const { name, value } = e.target;
 
-      // Validate time field dynamically
+     
       if (name === 'startTime' && !validateTime(value)) {
         setErrors((prevErrors) => ({
           ...prevErrors,
@@ -70,17 +70,17 @@ const MeetingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Final validation for time before submitting
+ 
     if (!validateTime(formData.startTime)) {
       setErrors({ startTime: 'Invalid time format. Use HH:mm:ss.' });
       return;
     }
 
     try {
-      // Ensure payload matches backend expectations
+    
       const payload = {
-        title: formData.title, // Include title in payload
-        participants: formData.participants, // IDs of participants
+        title: formData.title, 
+        participants: formData.participants, 
         date: formData.date,
         startTime: formData.startTime,
         duration: parseInt(formData.duration, 10),
@@ -109,7 +109,7 @@ const MeetingForm = () => {
         <TextField
           label="Meeting Title"
           name="title"
-          value={formData.title} // Bind title to formData
+          value={formData.title} 
           onChange={handleInputChange}
           variant="outlined"
           fullWidth
@@ -120,17 +120,17 @@ const MeetingForm = () => {
       <div>
         <TextField
           label="You"
-          value={loggedInUser?.firstName || 'Loading...'} // Display the logged-in user's name
+          value={loggedInUser?.firstName || 'Loading...'} 
           variant="outlined"
           fullWidth
-          disabled // Disable editing for logged-in user's name
+          disabled 
         />
       </div>
 
       <div>
         <TextField
           label="Participant Name"
-          value={formData.participants[1]} // Allow editing the second participant ID
+          value={formData.participants[1]} 
           onChange={(e) => handleInputChange(e, 1)}
           variant="outlined"
           fullWidth

@@ -17,7 +17,7 @@ const Register = () => {
 
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate(); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,10 +34,10 @@ const Register = () => {
       setMessage(`User ${user.user.firstName} created successfully!`);
       setError('');
 
-      // Redirect to login page after a short delay
+    
       setTimeout(() => {
-        navigate('/'); // Redirect to login page
-      }, 2000); // 2-second delay to show success message
+        navigate('/'); 
+      }, 2000); 
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create user.');
       setMessage('');

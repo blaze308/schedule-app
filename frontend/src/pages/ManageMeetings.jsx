@@ -67,7 +67,7 @@ const ManageMeetings = () => {
         startTime: newTime,
       });
 
-      // Update the meetings state with the modified meeting
+      
       setMeetings(
         meetings.map((m) =>
           m.id === meetingId ? { ...m, ...updatedMeeting } : m
@@ -80,7 +80,7 @@ const ManageMeetings = () => {
     }
   };
 
-  // Get the name of the other participant
+
   const getOtherParticipantName = (participants) => {
     if (!loggedInUser) return 'Unknown';
     const otherParticipantId = participants.find((id) => id !== loggedInUser.id);

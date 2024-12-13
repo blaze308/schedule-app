@@ -5,7 +5,7 @@ import { loginUser } from "../services/userService";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // For navigation
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,9 +15,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { token, user } = await loginUser(formData); // Authenticate user
-      localStorage.setItem("token", token); // Store token in localStorage
-      localStorage.setItem("user", JSON.stringify(user)); // Optionally store user data
+      const { token, user } = await loginUser(formData);
+      localStorage.setItem("token", token); 
+      localStorage.setItem("user", JSON.stringify(user)); 
 
       navigate("/dashboard"); 
     } catch (err) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import { format, parse, startOfWeek, getDay } from 'date-fns';
-import enUS from 'date-fns/locale/en-US'; // Import locale using ES Modules
+import enUS from 'date-fns/locale/en-US'; 
 import { getUserMeetings } from '../services/meetingService';
 
 const locales = {
@@ -32,8 +32,8 @@ const CalendarView = () => {
         const meetings = await getUserMeetings(userId);
 
         const calendarEvents = meetings.map((meeting) => {
-          const startDateTime = new Date(`${meeting.date}T${meeting.startTime}`); // Combine date and time
-          const endDateTime = new Date(startDateTime.getTime() + meeting.duration * 60000); // Add duration
+          const startDateTime = new Date(`${meeting.date}T${meeting.startTime}`);
+          const endDateTime = new Date(startDateTime.getTime() + meeting.duration * 60000); 
 
           return {
             title: meeting.title || 'Untitled Meeting',
