@@ -33,7 +33,7 @@ class Meeting {
     toJSON() {
         return {
             id: this.id,
-            title: this.title, // Include title in the JSON representation
+            title: this.title,
             participants: this.participants,
             date: this.date,
             startTime: this.startTime,

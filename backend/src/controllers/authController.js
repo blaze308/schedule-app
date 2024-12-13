@@ -1,6 +1,6 @@
 const { users, sessions } = require('../db');
 const { v4: uuidv4 } = require('uuid');
-const bcrypt = require('bcrypt'); // For hashing passwords (install with `npm install bcrypt`)
+const bcrypt = require('bcrypt');
 
 // Register a new user
 exports.registerUser = async (req, res) => {
@@ -70,6 +70,6 @@ exports.authMiddleware = (req, res, next) => {
         return res.status(401).json({ message: 'Invalid or expired token.' });
     }
 
-    req.userId = userId; // Attach userId to the request object for further use
+    req.userId = userId;
     next();
 };

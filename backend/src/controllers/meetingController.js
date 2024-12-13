@@ -38,8 +38,6 @@ class MeetingController {
             const { meetingId } = req.params;
             const updateData = req.body;
 
-            // Optional: Add user authorization check
-            // This would typically involve checking if the user has permission to update the meeting
             const updatedMeeting = MeetingService.updateMeeting(meetingId, updateData);
 
             res.json({
@@ -61,7 +59,6 @@ class MeetingController {
         try {
             const { meetingId } = req.params;
 
-            // Optional: Add user authorization check
             const canceledMeeting = MeetingService.cancelMeeting(meetingId);
 
             res.json({
@@ -69,7 +66,6 @@ class MeetingController {
                 meeting: canceledMeeting
             });
         } catch (error) {
-            // Handle not found errors
             res.status(404).json({
                 message: 'Failed to cancel meeting',
                 error: error.message
@@ -81,11 +77,6 @@ class MeetingController {
     async getUserMeetings(req, res) {
         try {
             const { userId } = req.params;
-
-            // Optional: Add authentication to ensure user can only fetch their own meetings
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
 
             const userMeetings = MeetingService.getUserMeetings(userId);
 

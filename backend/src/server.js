@@ -10,9 +10,8 @@ const corsOptions = {
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or curl requests)
         const allowedOrigins = [
-            'http://localhost:5173',   // Your local Vite dev server
-            'https://react-schedule-app.netlify.app', // Your production frontend
-            'https://your-other-domain.com' // Add any other domains you need
+            'http://localhost:5173',
+            'https://react-schedule-app.netlify.app',
         ];
 
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -32,8 +31,8 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Use the routes for meetings and users
-app.use('/api/meetings', meetingRoutes);  // Prefix routes with /api/meetings
-app.use('/api/users', userRoutes);        // Prefix routes with /api/users
+app.use('/api/meetings', meetingRoutes);
+app.use('/api/users', userRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

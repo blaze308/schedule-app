@@ -26,11 +26,6 @@ class UserController {
             const { userId } = req.params;
             const user = await UserService.getUserById(userId);
 
-            // Optional: Add authorization check
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
-
             res.json({
                 message: 'User profile retrieved successfully',
                 user: user.toJSON()
@@ -48,11 +43,6 @@ class UserController {
         try {
             const { userId } = req.params;
             const updateData = req.body;
-
-            // Optional: Add authorization check
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
 
             const updatedUser = await UserService.updateUser(userId, updateData);
 
@@ -92,10 +82,6 @@ class UserController {
             const { userId } = req.params;
             const availabilityData = req.body;
 
-            // Optional: Add authorization check
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
 
             const updatedAvailability = await UserService.updateUserAvailability(
                 userId,
@@ -118,11 +104,6 @@ class UserController {
     async getUserMeetings(req, res) {
         try {
             const { userId } = req.params;
-
-            // Optional: Add authorization check
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
 
             const userMeetings = await UserService.getUserMeetings(userId);
 
@@ -150,7 +131,7 @@ class UserController {
             res.json({
                 message: 'Login successful',
                 token,
-                user: user.toJSON(), // Include user data (excluding sensitive details)
+                user: user.toJSON(),
             });
         } catch (error) {
             res.status(401).json({
@@ -183,11 +164,6 @@ class UserController {
     async deleteUser(req, res) {
         try {
             const { userId } = req.params;
-
-            // Optional: Add authorization check
-            // if (req.user.id !== userId && !req.user.isAdmin) {
-            //     return res.status(403).json({ message: 'Unauthorized access' });
-            // }
 
             await UserService.deleteUser(userId);
 

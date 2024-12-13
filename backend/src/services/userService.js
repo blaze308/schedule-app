@@ -1,6 +1,6 @@
 
-const User = require('../models/User'); // Assuming User model exists in models/User.js
-const bcrypt = require('bcrypt'); // For hashing and comparing passwords
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 // Simulated in-memory database for users
 const users = new Map();
@@ -15,11 +15,11 @@ class UserService {
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(userData.password, 10);
-        userData.passwordHash = hashedPassword; // Add the hashed password to userData
+        userData.passwordHash = hashedPassword;
 
         // Create the user
         const newUser = new User(userData);
-        newUser.validate(); // Validate user data (ensures all required fields are present)
+        newUser.validate();
 
         // Save to in-memory database
         users.set(newUser.id, newUser);
@@ -40,7 +40,7 @@ class UserService {
             throw new Error('Invalid email or password.');
         }
 
-        return user; // Return the authenticated user
+        return user;
     }
 
     // Get a user by ID
@@ -64,8 +64,8 @@ class UserService {
             }
         });
 
-        user.validate(); // Ensure updated data is valid
-        users.set(userId, user); // Save updated user to in-memory database
+        user.validate();
+        users.set(userId, user);
         return user;
     }
 
@@ -78,8 +78,8 @@ class UserService {
     // Update user availability
     static async updateUserAvailability(userId, availabilityData) {
         const user = await this.getUserById(userId);
-        user.availability = { ...user.availability, ...availabilityData }; // Merge new availability data
-        users.set(userId, user); // Save updated user to in-memory database
+        user.availability = { ...user.availability, ...availabilityData };
+        users.set(userId, user);
         return user.availability;
     }
 
@@ -109,7 +109,7 @@ class UserService {
         if (!users.has(userId)) {
             throw new Error('User not found');
         }
-        users.delete(userId); // Remove user from in-memory database
+        users.delete(userId);
     }
 }
 

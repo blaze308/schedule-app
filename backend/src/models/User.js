@@ -34,8 +34,8 @@ class User {
         };
 
         // Authentication and security
-        this.passwordHash = data.passwordHash; // Hashed password
-        this.salt = data.salt; // Salt for password hashing
+        this.passwordHash = data.passwordHash;
+        this.salt = data.salt;
 
         // Account metadata
         this.createdAt = data.createdAt || new Date();
